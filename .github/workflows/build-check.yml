@@ -49,8 +49,8 @@ jobs:
             grep -Fq "$title" _site/index.html
             grep -Fq "$title" _site/publications/index.html
           done
-          if grep -R -Fq "Paper Title Number" _site; then
-            echo "Sample publication content was generated" >&2
+          if grep -R -l -F "Paper Title Number" _site; then
+            echo "Sample publication content was generated in the files listed above" >&2
             exit 1
           fi
           for removed_path in cv talks teaching portfolio year-archive talkmap terms non-menu-page archive-layout-with-content; do
