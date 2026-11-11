@@ -155,6 +155,7 @@ exclude:
   - "*.sublime-workspace"
   - .asset-cache
   - .bundle
+  - .devcontainer
   - .github
   - .jekyll-assets-cache
   - .sass-cache
@@ -182,6 +183,15 @@ exclude:
   - _teaching
   - _portfolio
   - _publications
+  - _drafts
+  - markdown_generator
+  - scripts
+  - talkmap
+  - talkmap.ipynb
+  - talkmap.py
+  - talkmap_out.ipynb
+  - docker-compose.yaml
+  - _config_docker.yml
 keep_files:
   - .git
   - .svn
