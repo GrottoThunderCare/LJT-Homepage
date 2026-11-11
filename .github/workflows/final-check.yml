@@ -1,0 +1,30 @@
+name: Final Jekyll validation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: ruby/setup-ruby@v1.328.0
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+      - name: Build
+        run: bundle exec jekyll build --baseurl "/LJT-Homepage"
+        env:
+          JEKYLL_ENV: production
+      - name: Check content
+        run: |
+          test -f _site/index.html
+          test -f _site/publications/index.html
+          grep -Fq "Junteng Liu" _site/index.html
+          grep -Fq "jliugi@connect.ust.hk" _site/index.html
+          grep -Fq "SynLogic: Synthesizing Verifiable Reasoning Data at Scale for Learning Logical Reasoning and Beyond" _site/index.html
+          grep -Fq "SynLogic: Synthesizing Verifiable Reasoning Data at Scale for Learning Logical Reasoning and Beyond" _site/publications/index.html
+          ! grep -R -l -F "Paper Title Number" _site
